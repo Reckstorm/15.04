@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 700);
+            this.ClientSize = new System.Drawing.Size(700, 700);
             this.Text = "Form1";
 
             RedTr.Location = new Point(0, 0);
@@ -79,6 +79,18 @@
             panelRGB.Width = 450;
             panelRGB.Height = 200;
 
+            ListBox.Location = new Point(BlueTr.Location.X + BlueTr.Width + 10, 10);
+            ListBox.Width = 150;
+            ListBox.Height = 400;
+
+            save.Location = new Point(BlueTr.Location.X + BlueTr.Width + 10, ListBox.Location.Y + ListBox.Height + 10);
+            save.Text = "Save";
+            save.Size = new Size(150, 30);
+            save.Click += (s, e) =>
+            {
+                ListBox.Items.Add($"R:{RedLB.Text}, G:{GreenLB.Text}, B:{BlueLB.Text}");
+            };
+
             this.Controls.Add(RedTr);
             this.Controls.Add(GreenTr);
             this.Controls.Add(BlueTr);
@@ -88,6 +100,9 @@
             this.Controls.Add(BlueLB);
 
             this.Controls.Add(panelRGB);
+
+            this.Controls.Add(ListBox);
+            this.Controls.Add(save);
         }
         TrackBar RedTr = new TrackBar();
         TrackBar GreenTr = new TrackBar();
@@ -98,6 +113,8 @@
         Label BlueLB = new Label();
 
         Panel panelRGB = new Panel();
+        Button save = new Button();
+        ListBox ListBox = new ListBox();
         #endregion
     }
 }
