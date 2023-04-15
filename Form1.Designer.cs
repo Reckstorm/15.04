@@ -41,9 +41,13 @@ namespace _15._04
                 if (ListBox.Items.Count > 0)
                 {
                     File.WriteAllText(path, "");
-                    foreach (var item in ListBox.Items)
+                    for (int i = 0; i < ListBox.Items.Count; i++)
                     {
-                        File.AppendAllText(path, $"{item.ToString()}\n");
+                        if (i == ListBox.Items.Count - 1)
+                        {
+                            File.AppendAllText(path, $"{ListBox.Items[i].ToString()}");
+                        }
+                        else File.AppendAllText(path, $"{ListBox.Items[i].ToString()}\n");
                     }
                 }
             };
@@ -120,8 +124,6 @@ namespace _15._04
             };
 
             save.Location = new Point(BlueTr.Location.X + BlueTr.Width + 10, ListBox.Location.Y + ListBox.Height + 10);
-            //save.Text = "Save";
-
             save.BackgroundImage = Image.FromFile("E:\\Projects\\15.04\\Star.png");
             save.BackgroundImageLayout = ImageLayout.Zoom;
             save.Size = new Size(150, 30);
