@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 500);
+            this.ClientSize = new System.Drawing.Size(500, 700);
             this.Text = "Form1";
 
             RedTr.Location = new Point(0, 0);
@@ -38,7 +38,11 @@
             RedTr.Minimum = 0;
             RedTr.Size = new Size(150, 450);
             RedTr.Orientation = Orientation.Vertical;
-            RedTr.ValueChanged += (s, e) => RedLB.Text = RedTr.Value.ToString();
+            RedTr.ValueChanged += (s, e) =>
+            {
+                RedLB.Text = RedTr.Value.ToString();
+                panelRGB.BackColor = Color.FromArgb(255, RedTr.Value, panelRGB.BackColor.G, panelRGB.BackColor.B);
+            };
 
             RedLB.Location = new Point(0, RedTr.Height);
             RedLB.Text = "0";
@@ -48,7 +52,11 @@
             GreenTr.Minimum = 0;
             GreenTr.Size = new Size(150, 450);
             GreenTr.Orientation = Orientation.Vertical;
-            GreenTr.ValueChanged += (s, e) => GreenLB.Text = GreenTr.Value.ToString();
+            GreenTr.ValueChanged += (s, e) =>
+            {
+                GreenLB.Text = GreenTr.Value.ToString();
+                panelRGB.BackColor = Color.FromArgb(255, panelRGB.BackColor.R, GreenTr.Value, panelRGB.BackColor.B);
+            };
 
             GreenLB.Location = new Point(RedTr.Location.X + RedTr.Width + 10, GreenTr.Height);
             GreenLB.Text = "0";
@@ -58,10 +66,18 @@
             BlueTr.Minimum = 0;
             BlueTr.Size = new Size(150, 450);
             BlueTr.Orientation = Orientation.Vertical;
-            BlueTr.ValueChanged += (s, e) => BlueLB.Text = BlueTr.Value.ToString();
+            BlueTr.ValueChanged += (s, e) =>
+            {
+                BlueLB.Text = BlueTr.Value.ToString();
+                panelRGB.BackColor = Color.FromArgb(255, panelRGB.BackColor.R, panelRGB.BackColor.G, BlueTr.Value);
+            };
 
             BlueLB.Location = new Point(GreenTr.Location.X + GreenTr.Width + 10, BlueTr.Height);
             BlueLB.Text = "0";
+
+            panelRGB.Location = new Point(0, RedLB.Location.Y + RedLB.Height + 10);
+            panelRGB.Width = 450;
+            panelRGB.Height = 200;
 
             this.Controls.Add(RedTr);
             this.Controls.Add(GreenTr);
@@ -70,6 +86,8 @@
             this.Controls.Add(RedLB);
             this.Controls.Add(GreenLB);
             this.Controls.Add(BlueLB);
+
+            this.Controls.Add(panelRGB);
         }
         TrackBar RedTr = new TrackBar();
         TrackBar GreenTr = new TrackBar();
@@ -78,6 +96,8 @@
         Label RedLB = new Label();
         Label GreenLB = new Label();
         Label BlueLB = new Label();
+
+        Panel panelRGB = new Panel();
         #endregion
     }
 }
